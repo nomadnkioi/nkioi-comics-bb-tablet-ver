@@ -1833,4 +1833,11 @@ window.addEventListener('DOMContentLoaded', () => {
   initZoomEngine();
   renderBookshelf();
   loadGapiAndGis();
+
+  // 서비스 워커 등록 (PWA 전체화면 앱 지원)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('서비스 워커가 정상 등록되었습니다.', reg))
+      .catch(err => console.error('서비스 워커 등록 실패:', err));
+  }
 });
